@@ -34,7 +34,13 @@ bot.command('map', async ctx => {
   ctx.reply(await buildGoogleMapsURL());
 });
 
-bot.launch();
+bot.launch().catch((err) => {
+  console.error('Failed to start bot:', err.message);
+  setTimeout(() => {
+    console.log('Retrying...');
+    bot.launch();
+  }, 5000);
+});
 
 process.on('uncaughtException', err => {
   console.error('Uncaught exception:', err);
