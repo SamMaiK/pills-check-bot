@@ -5,7 +5,7 @@ const endpoint = 'https://api.receptagemini.pl/graphql/';
 const query = gql`
   query getMedicineStockQuery($items: [ItemInput]) {
     searchInPharmacy(items: $items) {
-      stockByPharmacy {
+      stockByPharmacy: StockByPharmacy {
         stock {
           itemStatus
         }
