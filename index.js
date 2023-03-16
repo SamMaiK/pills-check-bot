@@ -22,7 +22,7 @@ const buildGoogleMapsURL = async () => {
   const baseUrl = process.env.MAP_SITE_LINK;
   const markers = Object.values(result).map(({ geo: { latitude: lat, longitude: lng }, amount: tooltip }) => ({ lat, lng, tooltip }));
   const markerStrings = markers.map(marker => `${marker.lat},${marker.lng},${encodeURIComponent(marker.tooltip)}`);
-  return baseUrl + markerStrings.join(';');
+  return `${baseUrl}?coords=${markerStrings.join(';')}`;
 };
 
 bot.start(async ctx => {
